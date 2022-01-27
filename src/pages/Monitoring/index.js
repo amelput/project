@@ -43,6 +43,27 @@ export default function Monitoring () {
            clearInterval(fetch);
         };
     });
+    
+         useEffect(()=> {
+            if(!isFirst){
+                if((data?.[data?.length-1].voltageac)>250){
+                    klikNotif1()
+                    setIsFirst(true) 
+                };
+                if((data?.[data?.length-1].currentac/1000)>100){
+                    klikNotif2()
+                    setIsFirst(true) 
+                };
+                if((data?.[data?.length-1].voltagedc)>26){
+                    klikNotif3()
+                    setIsFirst(true)
+                };
+                if((data?.[data?.length-1].currentdc/1000)>3.2){
+                    klikNotif4() 
+                    setIsFirst(true) 
+                };
+            }
+        },[isFirst, data]);
 
     useEffect(()=>{
         const timers = setInterval(()=>{
@@ -63,26 +84,7 @@ export default function Monitoring () {
         return function cleanup() {
             clearInterval(timers)
         }});
-        useEffect(()=> {
-            if(!isFirst){
-                if((data?.[data?.length-1].voltageac)>250){
-                    klikNotif1()
-                    setIsFirst(true) 
-                };
-                if((data?.[data?.length-1].currentac/1000)>100){
-                    klikNotif2()
-                    setIsFirst(true) 
-                };
-                if((data?.[data?.length-1].voltagedc)>26){
-                    klikNotif3()
-                    setIsFirst(true)
-                };
-                if((data?.[data?.length-1].currentdc/1000)>3.2){
-                    klikNotif4() 
-                    setIsFirst(true) 
-                };
-            }
-        },[isFirst]);
+   
                     
         if(loading){
             return<View style={{flex: 1 ,backgroundColor:'#F0F8FF', alignItems: 'center', justifyContent:'center'}}>
