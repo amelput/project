@@ -86,7 +86,7 @@ const timeDC = moment.duration(ubahDetikLamaDC, "seconds").format("hh:mm:ss");
                 </View>
             </View>
             <View style={{backgroundColor: 'white', padding: 25, margin: 40, marginTop: responsiveHeight(9)}}>
-                <Text style={{fontSize: responsiveFontSize(1.6), color: '#49809a', fontWeight:'bold'}}>Kesimpulan : </Text>
+                <Text style={{fontSize: responsiveFontSize(1.8), color: '#49809a', fontWeight:'bold'}}>INFO  </Text>
                 <Text style={{fontSize: responsiveFontSize(1.5), color: '#49809a'}}>Lama ketahanan aki dapat membackup ditentukan oleh kapasitas ampere aki dan berapa watt beban.</Text>
             </View>
             </ScrollView>

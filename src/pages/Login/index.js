@@ -26,7 +26,9 @@ class Login extends Component{
             this.getGithubUser()
         }
         //    Get Api Users
-        getGithubUser = async () => {
+        async getGithubUser(){
+            console.log("email :", this.state.email);
+            console.log("password :", this.state.password);
             try {
                 const res = await axios.post('https://kelompok2-gmedia.herokuapp.com/users/login', {
                     email: this.state.email,
@@ -34,40 +36,12 @@ class Login extends Component{
                 })
                 this.setState({ isError: false, isLoading: false, data: res.data })
                 console.log(res);  
+                this.props.navigation.navigate('MainApp')
             } catch (error) {
                 this.setState({ isLoading: false, isError: true })
+                Alert.alert('Warning', 'Email/password yang dimasukkan salah!')
             }}     
     render(){
-
-
-        if (this.state.email === null){
-            Alert.alert('Email wajib diisi!')
-        }
-        if (this.state.password=== null){
-            Alert.alert('Password wajib diisi!')
-        }
-
-                //   //  If load data
-                //   if (this.state.isLoading) {
-                //     return (
-                //         <View
-                //             style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
-                //         >
-                //             <ActivityIndicator size='large' color='blue' />
-                //         </View>
-                //     )
-                // }
-                // // If data not fetch
-                // else if (this.state.isError) {
-                //     return (
-                //         <View
-                //             style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
-                //         >
-                //             <Text>Terjadi Error Saat Memuat Data</Text>
-                //         </View>
-                //     )
-                // }
-                // // If data finish load 
         return (
             <View style={{backgroundColor:'#F0F8FF',flex:1}}>
             <View style={{flexDirection : 'column',justifyContent: "center", alignItems: 'center'}}>
@@ -82,12 +56,12 @@ class Login extends Component{
                         />
                     <View style={{justifyContent: "center",alignItems: "center"}}>
                         <TextInput
-                            onPress={() => {if (this.state.email="") {
+                            onPress={() => {if (this.state.email==="") {
                                 Alert.alert('Email wajib diisi!')
                             }}}
                             placeholder="Email" 
                             placeholderTextColor={'white'}
-                            // onChangeText= {(text)=>this.setState({nama:text})}
+                            onChangeText= {(text)=>this.setState({email:text})}
                             style={{
                                 height: responsiveHeight(6),
                                 width: responsiveWidth(75),
@@ -99,12 +73,12 @@ class Login extends Component{
                             }}
                         />
                         <TextInput 
-                             onPress={() => {if (this.state.password="") {
+                             onPress={() => {if (this.state.password==="") {
                                 Alert.alert('Password wajib diisi!')
                             }}}
                             placeholder="Password" 
                             placeholderTextColor={'white'}
-                            // onChangeText= {(text)=>this.setState({password:text})}
+                            onChangeText= {(text)=>this.setState({password:text})}
                             secureTextEntry={true}
                             style={{
                                 height: responsiveHeight(6),
@@ -118,9 +92,9 @@ class Login extends Component{
                         />
                         
                         <TouchableOpacity 
-                            onPress={() =>   {if (this.state.data.status===false) {
-                                Alert.alert('Cek ulang email dan password!')
-                            } else this.props.navigation.navigate('MainApp')}}
+                            onPress={() =>   {if (this.state.data.status===false || this.state.email===""|| this.state.password==="") {
+                                Alert.alert('Warning','Cek ulang email dan password!')
+                            } else this.getGithubUser()}}
                             style={{
                                 height: responsiveHeight(6),
                                 width: responsiveWidth(75),
@@ -134,12 +108,12 @@ class Login extends Component{
                                 Login
                             </Text>
                     </TouchableOpacity>
-                    <View  style={{marginTop: responsiveHeight(1.5), flexDirection:'row'}}>
+                    {/* <View  style={{marginTop: responsiveHeight(1.5), flexDirection:'row'}}>
                     <Text style={{color: '#49809a', fontSize: responsiveFontSize(1.8)}}>Belum punya akun?</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}> 
                         <Text style={{color: '#49809a', fontSize: responsiveFontSize(1.8), fontWeight:'bold'}}>  Sign In</Text>
                     </TouchableOpacity>
-                    </View>
+                    </View> */}
                     </View>
                 </View>  
                 </View>

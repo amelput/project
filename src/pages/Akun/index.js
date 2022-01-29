@@ -25,12 +25,12 @@ render(){
           style={{alignSelf: 'center',width: 70, height: 70}}></Image>
           <Text style={{fontSize: responsiveFontSize(2.5), marginLeft:10, paddingTop: 8, color : 'black',fontWeight:'bold'}}> GMEDIA SEMARANG</Text>
         </View>
-        <View style={{justifyContent:'center', alignItems:'center', marginTop: 20}}>
+        {/* <View style={{justifyContent:'center', alignItems:'center', marginTop: 20}}>
           <TouchableOpacity  onPress={() => this.props.navigation.navigate('EditProfil')}>
             <Image source={require('../../assets/icons/Edit.png')}
             style={{width: 25, height: 25,tintColor:'blaxk'}}/>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
       <View style={{flexDirection:'row', margin:10}}>
         <View>
@@ -41,7 +41,7 @@ render(){
         </View>
           <View>
           <Text style={{fontSize: responsiveFontSize(1.8)}}> :  Jl. Jangli Dalam No.29J, Jatingaleh, Kec. Candisari, </Text>
-          <Text style={{fontSize: responsiveFontSize(1.8)}}>   Kota Semarang, Jawa Tengah 50254</Text>
+          <Text style={{fontSize: responsiveFontSize(1.8)}}>    Kota Semarang, Jawa Tengah 50254</Text>
           <Text style={{fontSize: responsiveFontSize(1.8)}}> :  (024) 8509595</Text>
           <Text style={{fontSize: responsiveFontSize(1.8)}}> :  gmedia.net.id</Text>
           </View>
