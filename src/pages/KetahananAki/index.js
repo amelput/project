@@ -71,23 +71,23 @@ const timeDC = moment.duration(ubahDetikLamaDC, "seconds").format("hh:mm:ss");
                 <Text style={{alignSelf: 'center', color: 'white',fontWeight:'bold', fontSize: responsiveFontSize(3)}}>KETAHANAN AKI</Text>
             </View>
             <ScrollView>
-            <View style={{justifyContent:'center'}}>
+            <View style={{justifyContent:'center', flexDirection:'column'}}>
                 <View style={{marginVertical: responsiveWidth(7), marginTop: 50,justifyContent:'center', alignItems:'center'}}>
                     <Text style={{color:'#49809a', fontSize: responsiveFontSize(2.5), fontWeight:'bold'}}>LAMA AKI DAPAT MEMBACKUP</Text>
                     <Text style={{color:'#49809a', fontSize: responsiveFontSize(2.5), fontWeight:'bold'}}>PERANGKAT AC</Text>
                     <Text style={{color:'#49809a', fontSize: responsiveFontSize(1.5) ,}}>AKI 12V/120Ah</Text>
-                    <Text style={{color:'#1E90FF', fontSize: responsiveFontSize(9), fontWeight:'bold', alignSelf:'center'}}>{timeAC}</Text>
+                    <Text style={{color:'#47d7fb', fontSize: responsiveFontSize(9), fontWeight:'bold', alignSelf:'center'}}>{timeAC}</Text>
                 </View>
                 <View style={{marginVertical: responsiveWidth(7), marginTop: 50, justifyContent:'center', alignItems:'center'}}>
                 <Text style={{color:'#49809a', fontSize: responsiveFontSize(2.5), fontWeight:'bold'}}>LAMA AKI DAPAT MEMBACKUP</Text>
                     <Text style={{color:'#49809a', fontSize: responsiveFontSize(2.5), fontWeight:'bold'}}>PERANGKAT DC</Text>
                     <Text style={{color:'#49809a', fontSize: responsiveFontSize(1.5) ,}}>AKI 12V/120Ah</Text>
-                    <Text style={{color:'#1E90FF', fontSize: responsiveFontSize(9), fontWeight:'bold', alignSelf:'center'}}>{timeDC}</Text>
+                    <Text style={{color:'#47d7fb', fontSize: responsiveFontSize(9), fontWeight:'bold', alignSelf:'center'}}>{timeDC}</Text>
                 </View>
             </View>
             <View style={{backgroundColor: 'white', padding: 25, margin: 40, marginTop: responsiveHeight(9)}}>
-                <Text style={{fontSize: responsiveFontSize(1.6)}}>Kesimpulan : </Text>
-                <Text style={{fontSize: responsiveFontSize(1.5)}}>Lama ketahanan aki dapat membackup ditentukan oleh kapasitas ampere aki dan berapa watt beban.</Text>
+                <Text style={{fontSize: responsiveFontSize(1.6), color: '#49809a', fontWeight:'bold'}}>Kesimpulan : </Text>
+                <Text style={{fontSize: responsiveFontSize(1.5), color: '#49809a'}}>Lama ketahanan aki dapat membackup ditentukan oleh kapasitas ampere aki dan berapa watt beban.</Text>
             </View>
             </ScrollView>
         </View>

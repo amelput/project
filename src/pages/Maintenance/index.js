@@ -45,9 +45,6 @@ import {
         </View>
     }
   
-
- 
-
         return(
             <>
             
@@ -63,20 +60,29 @@ import {
                         return( 
                         <> 
                             <View style={{backgroundColor: '#CFD4D9' ,flexDirection:'column', marginBottom: 15, marginHorizontal: 15, padding: 7}}>
-                                {/* <Text style={{fontSize: responsiveFontSize(1.8)}}>{item.id}</Text> */}
-                                <View style={{justifyContent:'center', alignItems:'center', backgroundColor : '#49809a', marginBottom : 5}}>
-                                <Text>{moment(item.time).format('LLL')}</Text>
-
+                                <View style={{paddingVertical:5,justifyContent:'center', alignItems:'center', backgroundColor : '#49809a', marginBottom : 5}}>
+                                <Text style={{color:'white',fontSize: responsiveFontSize(1.8)}}>{moment(item.time).format('LLL')}</Text>
                                 </View>
-
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>CURRENT AC = {item.currentac/1000} A</Text>
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>VOLTAGE AC = {item.voltageac} V</Text>
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>DAYA AC = {item.voltageac * item.currentac/1000} Watt</Text>
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>CURRENT DC = {item.currentdc/1000} A</Text>
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>VOLTAGE DC = {item.voltagedc} V</Text>
-                                <Text style={{fontSize: responsiveFontSize(1.8)}}>DAYA DC = {item.voltagedc * item.currentdc/1000} Watt</Text>
-
-
+                                <View style={{flexDirection:'row'}}>
+                                    <View>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>ID </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>CURRENT AC </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>VOLTAGE AC </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>DAYA AC </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>CURRENT DC </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>VOLTAGE DC </Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}>DAYA DC </Text>
+                                    </View>
+                                    <View>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.id}</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.currentac/1000} A</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.voltageac} V</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.voltageac * item.currentac/1000} Watt</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.currentdc/1000} A</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.voltagedc} V</Text>
+                                        <Text style={{fontSize: responsiveFontSize(1.8)}}> =   {item.voltagedc * item.currentdc/1000} Watt</Text>
+                                    </View>
+                                </View>
                             </View>
                         </>
                             )

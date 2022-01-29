@@ -9,7 +9,7 @@ import Monitoring from './pages/Monitoring/index';
 import Maintenance from './pages/Maintenance/index';
 import Home from './pages/Home/index';
 import Akun from './pages/Akun/index';
-import ForgotPassword from './pages/ForgotPassword';
+import Register from './pages/Register';
 import EditProfil from './pages/EditProfil';
 import Detail from './pages/Detail/index';
 import KetahananAki from './pages/KetahananAki';
@@ -27,7 +27,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options= {{headerShown: false }}/>
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{headerShown: false }}/>
+        <Stack.Screen name="Register" component={Register} options={{headerShown: false }}/>
         <Stack.Screen name="MainApp" component= {MainApp} options= {{headerShown: false }} />
         <Stack.Screen name="Monitoring" component= {Monitoring} options= {{headerShown: false }} />
         <Stack.Screen name="Maintenance" component= {Maintenance} options= {{headerShown: false }} />

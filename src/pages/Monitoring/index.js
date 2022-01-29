@@ -5,11 +5,11 @@ import {
     View,
     SafeAreaView,
 } from 'react-native';
-import axios from 'axios';
 import Pie from 'react-native-pie';
 import { ScrollView } from 'react-native-gesture-handler';
 import {notifikasi} from '../Notifikasi/index'
 import moment from 'moment';
+import axios from 'axios';
 import 'moment-duration-format';
 import {
     responsiveHeight,
@@ -23,7 +23,29 @@ export default function Monitoring () {
     const[loading, setLoading]= useState( true)
     const [isFirst, setIsFirst]= useState(false)
 
-
+    const klikNotif1 = () => {
+        notifikasi.configure();
+        notifikasi.buatChannel("1");
+        notifikasi.kirimNotifikasi("1", "Pengukuran melebihi range", "voltage AC maks hingga 260V");
+        // notifikasi.kirimNotifikasiJadwal("1", "Pengukuran melebihi range", "voltage AC maks hingga 260V");
+    };
+    const klikNotif2 = () => {
+        notifikasi.configure();
+        notifikasi.buatChannel("2");
+        notifikasi.kirimNotifikasi("2", "Pengukuran melebihi range", "current AC maks hingga 100A ");
+    };
+    const klikNotif3 = () => {
+        notifikasi.configure();
+        notifikasi.buatChannel("3");
+        notifikasi.kirimNotifikasi("3", "Pengukuran melebihi range", "voltage DC maks hingga 26V");
+    }; 
+    const klikNotif4 = () => {
+        notifikasi.configure();
+        notifikasi.buatChannel("4");
+        notifikasi.kirimNotifikasi("4", "Pengukuran melebihi range", "current DC maks hingga 3.2A");
+        // notifikasi.kirimNotifikasiJadwal("4", "per Pengukuran melebihi range", "current DC maks hingga 3.2A");
+    };
+    
     const getData = async () => {
         try {
             const res = await axios.get('https://kelompok2-gmedia.herokuapp.com/tampil')
@@ -43,6 +65,26 @@ export default function Monitoring () {
            clearInterval(fetch);
         };
     });
+    useEffect(()=> {
+        if(!isFirst){
+            if((data?.[data?.length-1].voltageac)>250){
+                klikNotif1()
+                setIsFirst(true) 
+            };
+            if((data?.[data?.length-1].currentac/1000)>100){
+                klikNotif2()
+                setIsFirst(true) 
+            };
+            if((data?.[data?.length-1].voltagedc)>26){
+                klikNotif3()
+                setIsFirst(true)
+            };
+            if((data?.[data?.length-1].currentdc/1000)>3.2){
+                klikNotif4() 
+                setIsFirst(true) 
+            };
+        }
+    },[isFirst, data]);
 
     useEffect(()=>{
         const timers = setInterval(()=>{
@@ -59,30 +101,10 @@ export default function Monitoring () {
                 if((data?.[data?.length-1].currentdc/1000)>3.2){ 
                     klikNotif4() 
                 };
-            }}, 3000)
+            }}, 300000)
         return function cleanup() {
             clearInterval(timers)
         }});
-        useEffect(()=> {
-            if(!isFirst){
-                if((data?.[data?.length-1].voltageac)>250){
-                    klikNotif1()
-                    setIsFirst(true) 
-                };
-                if((data?.[data?.length-1].currentac/1000)>100){
-                    klikNotif2()
-                    setIsFirst(true) 
-                };
-                if((data?.[data?.length-1].voltagedc)>26){
-                    klikNotif3()
-                    setIsFirst(true)
-                };
-                if((data?.[data?.length-1].currentdc/1000)>3.2){
-                    klikNotif4() 
-                    setIsFirst(true) 
-                };
-            }
-        },[isFirst]);
                     
         if(loading){
             return<View style={{flex: 1 ,backgroundColor:'#F0F8FF', alignItems: 'center', justifyContent:'center'}}>
@@ -114,30 +136,6 @@ export default function Monitoring () {
     const ubahDetikLamaDC = (penguranganLamaAkiDC*3600);
 
     const timeDC = moment.duration(ubahDetikLamaDC, "seconds").format("hh:mm:ss");
-
-    const klikNotif1 = () => {
-        notifikasi.configure();
-        notifikasi.buatChannel("1");
-        notifikasi.kirimNotifikasi("1", "Pengukuran melebihi range", "voltage AC maks hingga 260V");
-        // notifikasi.kirimNotifikasiJadwal("1", "Pengukuran melebihi range", "voltage AC maks hingga 260V");
-    };
-    const klikNotif2 = () => {
-        notifikasi.configure();
-        notifikasi.buatChannel("2");
-        notifikasi.kirimNotifikasi("2", "Pengukuran melebihi range", "current AC maks hingga 100A ");
-    };
-    const klikNotif3 = () => {
-        notifikasi.configure();
-        notifikasi.buatChannel("3");
-        notifikasi.kirimNotifikasi("3", "Pengukuran melebihi range", "voltage DC maks hingga 26V");
-    };
-    const klikNotif4 = () => {
-        notifikasi.configure();
-        notifikasi.buatChannel("4");
-        notifikasi.kirimNotifikasi("4", "Pengukuran melebihi range", "current DC maks hingga 3.2A");
-        // notifikasi.kirimNotifikasiJadwal("4", "per Pengukuran melebihi range", "current DC maks hingga 3.2A");
-    };
-
     
     const dateToFormat = moment(data?.[data?.length-1]?.time).format('LLL');
 
